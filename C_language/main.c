@@ -40,5 +40,7 @@ int main(void)
     printf("Len:[%d]\n", len2);
     _printf("Unknown:[%r]\n");
     printf("Unknown:[%r]\n");
+    _printf("Len:[%d]\nsarahis beautiful\n", len);
+    printf("Len:[%d]\nsarah\n", len2);
     return (0);
 }

@@ -19,6 +19,7 @@ int main(void);
 int _printf(const char *format, ...);
 void add_to_buffer(char character);
 void print_buffer(void);
+int handle_specifier(char specifier, va_list args);
 
 #endif /* MAIN_H */
 
