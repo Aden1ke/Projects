@@ -21,6 +21,8 @@ void add_to_buffer(char character);
 void print_buffer(void);
 int handle_specifier(char specifier, va_list args);
 void covert_to_binary(int num, char *binary_str);
+void covert_to_base8(unsigned int num, char *binary_str);
+void covert_to_hexadecimal(unsigned int num, char *hex_str, char specifier);
 
 #endif /* MAIN_H */
 
