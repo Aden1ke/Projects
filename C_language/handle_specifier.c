@@ -6,6 +6,8 @@ int handle_specifier(char specifier, va_list args)
 	int printed_chars = 0;
 	unsigned int u_num;
 	char character, num_str[12], *str, binary_str[BUFFER_SIZE];
+	char nil_str[] = "(nil)";
+	void *ptr;
 
 	switch(specifier)
 	{
@@ -62,6 +64,21 @@ int handle_specifier(char specifier, va_list args)
 				add_to_buffer(binary_str[j]);
 				printed_chars++;
 			}
+			break;
+		case 'p':
+			ptr = va_arg(args, void*);
+			if (ptr == NULL) {
+				for (j = 0; nil_str[j] != '\0'; j++) {
+					add_to_buffer(nil_str[j]);
+					printed_chars++;
+				}
+			} else {
+					sprintf(num_str, "%p", ptr);
+					for (j = 0; num_str[j] != '\0'; j++) {
+						add_to_buffer(num_str[j]);
+						printed_chars++;
+					}
+				}
 			break;
 		case '%':
 			add_to_buffer('%');
