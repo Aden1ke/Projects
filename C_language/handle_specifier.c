@@ -4,7 +4,7 @@ int handle_specifier(char specifier, va_list args)
 {
 	int j, num;
 	int printed_chars = 0;
-	char character, num_str[12], *str;
+	char character, num_str[12], *str, binary_str[BUFFER_SIZE];
 
 	switch(specifier)
 	{
@@ -26,6 +26,14 @@ int handle_specifier(char specifier, va_list args)
 			sprintf(num_str, "%d", num);
 			for (j = 0; num_str[j] != '\0'; j++) {
 				add_to_buffer(num_str[j]);
+				printed_chars++;
+			}
+			break;
+		case 'b':
+			num = va_arg(args, int);
+			covert_to_binary(num, binary_str);
+			for (j = 0; binary_str[j] != '\0'; j++) {
+				add_to_buffer(binary_str[j]);
 				printed_chars++;
 			}
 			break;

@@ -20,6 +20,7 @@ int _printf(const char *format, ...);
 void add_to_buffer(char character);
 void print_buffer(void);
 int handle_specifier(char specifier, va_list args);
+void covert_to_binary(int num, char *binary_str);
 
 #endif /* MAIN_H */
 
