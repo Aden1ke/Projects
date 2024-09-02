@@ -1,5 +1,10 @@
 #include "main.h"
 
+/* check for flags.
+ * flag: character to check.
+ * specifier: the specifier that comes after the flag
+ * determines what to print 
+ */
 int handle_flag(char flag, char specifier) {
 	int printed_chars = 0, i;
 	char *prefix;

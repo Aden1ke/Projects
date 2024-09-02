@@ -1,5 +1,9 @@
 #include "main.h"
-
+/* handle length and height
+ * specifier checks for either length or heigth
+ * next_char checks if the next character after h or l is x,X o,u,i,d
+ * which determins if it will be converted
+ */
 
 void handle_length_height(char specifier, va_list args, char next_char){
 	long int long_num;
@@ -29,12 +33,10 @@ void handle_length_height(char specifier, va_list args, char next_char){
 		if (next_char == 'd' || next_char == 'i') {
 			short_num = (short int)va_arg(args, int);
 			sprintf(num_str, "%hd", short_num);
-		}
-		else if (next_char == 'u') {
+		} else if (next_char == 'u') {
 			ushort_num = (unsigned short int)va_arg(args, int);
 			sprintf(num_str, "%hu", ushort_num);
-		}
-		else if (next_char == 'o') {
+		} else if (next_char == 'o') {
 			ushort_num = (unsigned short int)va_arg(args, int);
 			covert_to_base8(ushort_num, buffer);
 			itera(buffer);

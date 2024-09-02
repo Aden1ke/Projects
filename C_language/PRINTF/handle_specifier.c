@@ -1,12 +1,16 @@
 #include "main.h"
 
+
+/* Handle specifiers.
+ * specifier: check for what to print.
+ * args: arguments.
+ * next_char : next character after specifiers.
+ */
 int handle_specifier(char specifier, va_list args, char next_char)
 {
-	int num;
-	int printed_chars = 0;
+	int printed_chars = 0, num;
 	unsigned int u_num;
-	char character, num_str[12], *str, binary_str[BUFFER_SIZE];
-	char nil_str[] = "(nil)";
+	char character, num_str[12], *str, binary_str[BUFFER_SIZE], nil_str[] = "(nil)";
 	void *ptr;
 
 	switch(specifier)

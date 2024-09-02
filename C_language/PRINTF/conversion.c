@@ -30,7 +30,10 @@ void covert_to_binary(int num, char *binary_str) {
 }
 
 
-
+/* convert a number to base 8(octal).
+ * num: is the interger converted.
+ * binary_str: is the string to add the numbers.
+ */
 void covert_to_base8(unsigned int num, char *binary_str) {
 	int binary[BUFFER_SIZE];
 	int i = 0;
@@ -56,7 +59,10 @@ void covert_to_base8(unsigned int num, char *binary_str) {
 
 
 
-
+/* convert a number to base Hexadecimal.
+ * num: is the interger converted.
+ * hex_str: is the string to add the numbers.
+ */
 void covert_to_hexadecimal(unsigned int num, char *hex_str, char specifier) {
 	int i = 0, index, digit, j;
 	char lowercase_chars[] = {'a', 'b', 'c', 'd', 'e', 'f'};
