@@ -20,7 +20,12 @@ int _printf(const char *format, ...) {
 				printed_chars += handle_flag(format[i], format[i + 1]);
 				i++;
             }
-			printed_chars += handle_specifier(format[i], args);
+			if (format[i] == 'l' || format[i] == 'h') {
+				handle_specifier(format[i], args, format[i + 1]);
+				i++;  // Move to the specifier character after 'l' or 'h'
+			}
+			else
+				printed_chars += handle_specifier(format[i], args, format[i + 1]);
 		}
 		else {
 			add_to_buffer(format[i]);
@@ -29,6 +34,7 @@ int _printf(const char *format, ...) {
 	}
 	// Clean up the va_list
 	va_end(args);
+
 	if (buffer_index > 0)
 		print_buffer();
 

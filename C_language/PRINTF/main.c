@@ -78,5 +78,24 @@ int main(void)
     _printf("Custom: [%-5d]\n", 42);
     printf("Standard: [%-5d]\n\n", 42);
 
+
+
+/* test for length and height*/
+
+    _printf("Custom: [%ld]\n", 1234567890L);
+    printf("Standard: [%ld]\n", 1234567890L);
+
+    _printf("Custom: [%hd]\n", (short)12345);
+    printf("Standard: [%hd]\n", (short)12345);
+
+    _printf("Custom: [%lu]\n", 1234567890UL);
+    printf("Standard: [%lu]\n", 1234567890UL);
+
+    _printf("Custom: [%ho]\n", (unsigned short)12345);
+    printf("Standard: [%ho]\n", (unsigned short)12345);
+
+    _printf("Custom: [%lx]\n", 0xabcdefL);
+    printf("Standard: [%lx]\n", 0xabcdefL);
+
     return (0);
 }

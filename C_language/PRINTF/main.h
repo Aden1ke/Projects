@@ -19,11 +19,13 @@ int main(void);
 int _printf(const char *format, ...);
 void add_to_buffer(char character);
 void print_buffer(void);
-int handle_specifier(char specifier, va_list args);
+int handle_specifier(char specifier, va_list args, char next_char);
 void covert_to_binary(int num, char *binary_str);
 void covert_to_base8(unsigned int num, char *binary_str);
 void covert_to_hexadecimal(unsigned int num, char *hex_str, char specifier);
 int handle_flag(char flag, char specifier);
+int itera(char *string);
+void handle_length_height(char specifier, va_list args, char next_char);
 
 #endif /* MAIN_H */
 

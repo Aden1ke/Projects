@@ -1,8 +1,8 @@
 #include "main.h"
 
-int handle_specifier(char specifier, va_list args)
+int handle_specifier(char specifier, va_list args, char next_char)
 {
-	int j, num;
+	int num;
 	int printed_chars = 0;
 	unsigned int u_num;
 	char character, num_str[12], *str, binary_str[BUFFER_SIZE];
@@ -19,71 +19,51 @@ int handle_specifier(char specifier, va_list args)
 		case 's':
 			str = va_arg(args, char*);
 			if (str == NULL) str = "(null)";
-			for (j = 0; str[j] != '\0'; j++) {
-				add_to_buffer(str[j]);
-				printed_chars++;
-			}
+			itera(str);
 			break;
 		case 'd':
 		case 'i':
 			num = va_arg(args, int);
 			sprintf(num_str, "%d", num);
-			for (j = 0; num_str[j] != '\0'; j++) {
-				add_to_buffer(num_str[j]);
-				printed_chars++;
-			}
+			itera(num_str);
 			break;
 		case 'b':
 			num = va_arg(args, int);
 			covert_to_binary(num, binary_str);
-			for (j = 0; binary_str[j] != '\0'; j++) {
-				add_to_buffer(binary_str[j]);
-				printed_chars++;
-			}
+			itera(binary_str);
 			break;
 		case 'u':
 			u_num = va_arg(args, unsigned int);
 			sprintf(num_str, "%u", u_num);
-			for (j = 0; num_str[j] != '\0'; j++) {
-				add_to_buffer(num_str[j]);
-				printed_chars++;
-			}
+			itera(num_str);
 			break;
 		case 'o':
 			u_num = va_arg(args, unsigned int);
 			covert_to_base8(u_num, binary_str);
-			for (j = 0; binary_str[j] != '\0'; j++) {
-				add_to_buffer(binary_str[j]);
-				printed_chars++;
-			}
+			itera(binary_str);
 			break;
 		case 'x':
 		case 'X':
 			u_num = va_arg(args, unsigned int);
 			covert_to_hexadecimal(u_num, binary_str, specifier);
-			for (j = 0; binary_str[j] != '\0'; j++) {
-				add_to_buffer(binary_str[j]);
-				printed_chars++;
-			}
+			itera(binary_str);
 			break;
 		case 'p':
 			ptr = va_arg(args, void*);
 			if (ptr == NULL) {
-				for (j = 0; nil_str[j] != '\0'; j++) {
-					add_to_buffer(nil_str[j]);
-					printed_chars++;
-				}
+				itera(nil_str);
 			} else {
 					sprintf(num_str, "%p", ptr);
-					for (j = 0; num_str[j] != '\0'; j++) {
-						add_to_buffer(num_str[j]);
-						printed_chars++;
-					}
+					itera(num_str);
 				}
 			break;
 		case '%':
 			add_to_buffer('%');
 			printed_chars++;
+			break;
+		case 'l':
+		case 'h':
+			handle_length_height(specifier, args, next_char);
 			break;
 		default:
 			add_to_buffer('%');
