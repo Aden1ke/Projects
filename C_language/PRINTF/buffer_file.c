@@ -30,3 +30,24 @@ int itera(char *string) {
 	}
 	return printed_chars;
 }
+
+
+
+// Function to get the current buffer content and its length
+char* get_buffer(void) {
+    return buffer; // Return pointer to the buffer
+}
+
+
+/* iterate through any string passed
+ * string : string to iterate through
+ * return: amount of characters
+ */
+int itera_length(char *string) {
+        int j, printed_chars = 0;
+
+        for (j = 0; string[j] != '\0'; j++) {
+                printed_chars++;
+        }
+        return printed_chars;
+}

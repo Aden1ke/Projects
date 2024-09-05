@@ -3,6 +3,7 @@
 int _printf(const char *format, ...) {
 	int i;
 	int printed_chars = 0;
+	flags_t flags = {0};
 
 	// Declare a va_list variable
 	va_list args;
@@ -17,14 +18,16 @@ int _printf(const char *format, ...) {
 		{
 			i++;
 			while (format[i] == '+' || format[i] == ' ' || format[i] == '#') {
-				printed_chars += handle_flag(format[i], format[i + 1]);
+				printed_chars += handle_flag(format[i], format[i + 1], flags);
 				i++;
             }
 			if (format[i] == 'l' || format[i] == 'h') {
 				handle_specifier(format[i], args, format[i + 1]);
 				i++;  // Move to the specifier character after 'l' or 'h'
+			} else if (isdigit(format[i])) {
+				printed_chars += handle_width(format, &i, format[i + 1], args, flags);
 			}
-			else
+			else 
 				printed_chars += handle_specifier(format[i], args, format[i + 1]);
 		}
 		else {
@@ -40,5 +43,3 @@ int _printf(const char *format, ...) {
 
     return printed_chars;
 }
-
-

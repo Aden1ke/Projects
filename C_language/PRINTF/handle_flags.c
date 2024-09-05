@@ -5,24 +5,21 @@
  * specifier: the specifier that comes after the flag
  * determines what to print 
  */
-int handle_flag(char flag, char specifier) {
+int handle_flag(char flag, char specifier, flags_t flags) {
 	int printed_chars = 0, i;
 	char *prefix;
 
 	switch (flag) {
 		case '+':
-			if (specifier == 'd' || specifier == 'i' || specifier == 'f') {
-				add_to_buffer('+');
-				printed_chars ++;
-			}
-			break;
 		case ' ':
 			if (specifier == 'd' || specifier == 'i' || specifier == 'f') {
 				add_to_buffer(' ');
 				printed_chars ++;
+				flags.right_justify = 1;
 			}
 			break;
 		case '#':
+			flags.right_justify = 1;
 			if (specifier == 'o') {
 				add_to_buffer('0');
 				printed_chars++;
@@ -43,10 +40,12 @@ int handle_flag(char flag, char specifier) {
 			}
 			break;
 		case '-':
+			flags.left_justify = 1;
 			add_to_buffer('-');
 			printed_chars ++;
 			break;
 		case '0':
+			flags.zero_padding = 1;
 			add_to_buffer('0');
 			printed_chars ++;
 			break;

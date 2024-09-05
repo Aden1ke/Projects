@@ -97,5 +97,7 @@ int main(void)
     _printf("Custom: [%lx]\n", 0xabcdefL);
     printf("Standard: [%lx]\n", 0xabcdefL);
 
+
+    run_width_tests();
     return (0);
 }
