@@ -25,7 +25,7 @@ int _printf(const char *format, ...) {
 				handle_specifier(format[i], args, format[i + 1]);
 				i++;  // Move to the specifier character after 'l' or 'h'
 			} else if (isdigit(format[i])) {
-				printed_chars += handle_width(format, &i, format[i + 1], args, flags);
+				printed_chars += handle_width(format, &i, format[i + 2], args, flags);
 			}
 			else 
 				printed_chars += handle_specifier(format[i], args, format[i + 1]);

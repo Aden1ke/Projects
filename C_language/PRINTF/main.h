@@ -35,8 +35,9 @@ int handle_flag(char flag, char specifier, flags_t flags);
 int itera(char *string);
 int itera_length(char *string);
 void handle_length_height(char specifier, va_list args, char next_char);
+/*int handle_width(char format, char specifier, char next_char,  va_list args, flags_t flags);*/
 int handle_width(const char *format, int *i, char specifier, va_list args, flags_t flags);
-int get_text_length(char specifier, va_list args);
+int get_text_length(char specifier, va_list args, char next_char);
 void run_width_tests(void);
 
 #endif /* MAIN_H */

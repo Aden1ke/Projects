@@ -6,18 +6,18 @@
  * args: arguments.
  * next_char : next character after specifiers.
  */
-int get_text_length(char specifier, va_list args) {
+int get_text_length(char specifier, va_list args, char next_char) {
 	int text_length = 0, num;
 	unsigned int u_num;
-	char character, num_str[12], *str, binary_str[BUFFER_SIZE];
+	char num_str[12], *str, binary_str[BUFFER_SIZE];
 	char nil_str[] = "(nil)";
 	void *ptr;
 
 	switch(specifier)
 	{
 		case 'c':
-			character = va_arg(args, int);
-			text_length = itera_length(&character);
+			printf("specifier = %c ,text_length = %d\n",specifier, text_length);
+			text_length = 1;
 			break;
 		case 's':
 			str = va_arg(args, char*);
@@ -31,6 +31,7 @@ int get_text_length(char specifier, va_list args) {
 			num = va_arg(args, int);
 			sprintf(num_str, "%d", num);
 			text_length = itera_length(num_str);
+			printf("specifier = %c ,text_length = %d\n",specifier, text_length);
 			break;
 		case 'b':
 			num = va_arg(args, int);
@@ -59,19 +60,20 @@ int get_text_length(char specifier, va_list args) {
 				text_length = itera_length(nil_str);
 			} else {
 					sprintf(num_str, "%p", ptr);
-					text_length = itera(num_str);
+					text_length = itera_length(num_str);
 				}
 			break;
 		case '%':
 			text_length++;
 			break;
-		/*case 'l':
+		case 'l':
 		case 'h':
 			handle_length_height(specifier, args, next_char);
-			break;*/
+			break;
 		default:
-			text_length += 2;
+			text_length+=2;
 			break;
 	}
+	printf("specifier = %c ,text_length = %d\n",specifier, text_length);
 	return text_length;
 }
