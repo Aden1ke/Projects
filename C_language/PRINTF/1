@@ -17,10 +17,10 @@ int handle_width(const char *format, int *i, char specifier, va_list args, flags
 			(*i)++;
 		}
 	}
-	specifier = format[*i];
 	text_length = get_text_length(specifier, args, format[*i + 1]);
 
 	padding_length = width - text_length;
+	printf("(width)%d - (text_length)%d = %d\n", width, text_length, padding_length);
 
 
 	if (padding_length < 0) {
@@ -30,6 +30,7 @@ int handle_width(const char *format, int *i, char specifier, va_list args, flags
 
 	// If left-justified, print the text first, then add spaces
 	if (flags.left_justify) {
+		printf("specifier = %c\n", format[*i]);
 		printed_chars += handle_specifier(specifier, args, '\0');
 		for (j = 0; j < padding_length; j++) {
 			add_to_buffer(' ');
@@ -41,6 +42,7 @@ int handle_width(const char *format, int *i, char specifier, va_list args, flags
 			add_to_buffer(flags.zero_padding ? '0' : ' ');
 			printed_chars++;
 		}
+		printf("specifier = %c\n", format[*i]);
 		printed_chars += handle_specifier(specifier, args, '\0');
 	}
 

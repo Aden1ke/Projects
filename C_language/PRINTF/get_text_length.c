@@ -16,7 +16,6 @@ int get_text_length(char specifier, va_list args, char next_char) {
 	switch(specifier)
 	{
 		case 'c':
-			printf("specifier = %c ,text_length = %d\n",specifier, text_length);
 			text_length = 1;
 			break;
 		case 's':
@@ -31,7 +30,7 @@ int get_text_length(char specifier, va_list args, char next_char) {
 			num = va_arg(args, int);
 			sprintf(num_str, "%d", num);
 			text_length = itera_length(num_str);
-			printf("specifier = %c ,text_length = %d\n",specifier, text_length);
+			//printf("specifier = %c ,text_length = %d, num_str = %d\n",specifier, text_length, num_str);
 			break;
 		case 'b':
 			num = va_arg(args, int);
@@ -74,6 +73,5 @@ int get_text_length(char specifier, va_list args, char next_char) {
 			text_length+=2;
 			break;
 	}
-	printf("specifier = %c ,text_length = %d\n",specifier, text_length);
 	return text_length;
 }
