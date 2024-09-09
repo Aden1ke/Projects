@@ -1,51 +1,89 @@
 #include "main.h"
 
 
-int handle_width(const char *format, int *i, char specifier, va_list args, flags_t flags) {
-	int width = 0, text_length = 0;
-	int printed_chars = 0, j, padding_length;
+/* add charactets to buffer and print in once buffer shows new line or it is full
+ */
+void add_to_buffer(char character) {
 
-	//text_length = get_text_length(specifier, args, format[*i + 1]);
-	// Check if the width is specified using an asterisk
-	if (format[*i] == '*') {
-		width = va_arg(args, int);
-		(*i)++;
-	} else {
-		// Calculate width if it's a number in the format string
-		while (format[*i] >= '0' && format[*i] <= '9') {
-			width = width * 10 + (format[*i] - '0'); // Convert the string number into integer
-			(*i)++;
-		}
+	// Append color code to buffer based on character type
+    if (isdigit(character)) {
+        // Set color for numbers (e.g., yellow)
+        snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", YELLOW);
+    } else if (isalpha(character)) {
+        // Set color for alphabets (e.g., green)
+        snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", GREEN);
+    } else if (character == '(' || character == ')' || character == '[' || character == ']' ||
+               character == '{' || character == '}' || character == '\\') {
+        // Set color for brackets, slashes (e.g., blue)
+        snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", BLUE);
+    } else if (character == '\'' || character == '\"') {
+        // Set color for quotes (e.g., red)
+        snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", RED);
+    } else {
+        // Reset color (default color for other characters)
+        snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", RESET);
+    }
+    buffer_index += strlen(buffer + buffer_index); // Update buffer index after adding color code
+
+	buffer[buffer_index++] = character;
+
+/*	if (isdigit(character)) {
+        // Set color for numbers (e.g., yellow)
+	textcolor(YELLOW);
+    } else if (isalpha(character)) {
+        // Set color for alphabets (e.g., green)
+        textcolor(GREEN);
+    } else if (character == '(' || character == ')' || character == '[' || character == ']' ||
+               character == '{' || character == '}' || character == '\\') {
+        // Set color for brackets, slashes (e.g., blue)
+        textcolor(BLUE);
+    } else if (character == '\'' || character == '\"') {
+        // Set color for quotes (e.g., red)
+        textcolor(RED);
+    } else {
+        */
+	if (character == '\n' || buffer_index == BUFFER_SIZE)
+		print_buffer();
+}
+
+/*print buffer function using write) */
+void print_buffer(void) {
+	write(1, buffer, buffer_index);
+	buffer_index = 0;
+}
+
+
+/* iterate through any string passed
+ * string : string to iterate through
+ * return: amount of characters
+ */
+int itera(char *string) {
+	int j, printed_chars = 0;
+
+	for (j = 0; string[j] != '\0'; j++) {
+		add_to_buffer(string[j]);
+		printed_chars++;
 	}
-	text_length = get_text_length(specifier, args, format[*i + 1]);
-
-	padding_length = width - text_length;
-	printf("(width)%d - (text_length)%d = %d\n", width, text_length, padding_length);
-
-
-	if (padding_length < 0) {
-		padding_length = 0;
-	}
-
-
-	// If left-justified, print the text first, then add spaces
-	if (flags.left_justify) {
-		printf("specifier = %c\n", format[*i]);
-		printed_chars += handle_specifier(specifier, args, '\0');
-		for (j = 0; j < padding_length; j++) {
-			add_to_buffer(' ');
-			printed_chars++;
-		}
-	} else {
-		// If right-justified or zero-padded, add padding first, then print the text
-		for (j = 0; j < padding_length; j++) {
-			add_to_buffer(flags.zero_padding ? '0' : ' ');
-			printed_chars++;
-		}
-		printf("specifier = %c\n", format[*i]);
-		printed_chars += handle_specifier(specifier, args, '\0');
-	}
-
-
 	return printed_chars;
+}
+
+
+
+// Function to get the current buffer content and its length
+char* get_buffer(void) {
+    return buffer; // Return pointer to the buffer
+}
+
+
+/* iterate through any string passed
+ * string : string to iterate through
+ * return: amount of characters
+ */
+int itera_length(char *string) {
+        int j, printed_chars = 0;
+
+        for (j = 0; string[j] != '\0'; j++) {
+                printed_chars++;
+        }
+        return printed_chars;
 }

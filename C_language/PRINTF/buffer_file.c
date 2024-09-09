@@ -4,11 +4,35 @@
 /* add charactets to buffer and print in once buffer shows new line or it is full
  */
 void add_to_buffer(char character) {
-	buffer[buffer_index++] = character;
 
+	// Append color code to buffer based on character type
+	if (isdigit(character))
+		// Set color for numbers (e.g., yellow)
+		snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", YELLOW);
+	else if (isalpha(character))
+		// Set color for alphabets (e.g., green)
+		snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", GREEN);
+	else if (character == '(' || character == ')' || character == '[' || character == ']' ||
+			character == '{' || character == '}' || character == '\\' || character == '|') {
+		// Set color for brackets, slashes (e.g., blue)
+		snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", BLUE);
+	} else if (character == '\'' || character == '\"' || character == '.' || character == '+'
+			|| character == '-' || character == '%' || character == '=' ||
+			character == ',' || character == '!' || character == '?'
+			|| character == ';' || character == ':' || character == '*'
+			|| character == '_') {
+		// Set color for quotes (e.g., red)
+		snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", MAGENTA);
+	} else
+		// Reset color (default color for other characters)
+		snprintf(buffer + buffer_index, BUFFER_SIZE - buffer_index, "%s", RESET);
+	buffer_index += strlen(buffer + buffer_index); // Update buffer index after adding color code
+	buffer[buffer_index++] = character;
 	if (character == '\n' || buffer_index == BUFFER_SIZE)
 		print_buffer();
 }
+
+
 
 /*print buffer function using write) */
 void print_buffer(void) {

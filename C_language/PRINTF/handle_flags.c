@@ -11,6 +11,13 @@ int handle_flag(char flag, char specifier, flags_t flags) {
 
 	switch (flag) {
 		case '+':
+			if (specifier == 'd' || specifier == 'i' || specifier == 'f') {
+
+				add_to_buffer('+');
+				printed_chars ++;
+				flags.plus = 1;
+			}
+			break;
 		case ' ':
 			if (specifier == 'd' || specifier == 'i' || specifier == 'f') {
 				add_to_buffer(' ');
@@ -45,8 +52,9 @@ int handle_flag(char flag, char specifier, flags_t flags) {
 			printed_chars ++;
 			break;
 		case '0':
-			flags.zero_padding = 1;
-			add_to_buffer('0');
+			if (!flags.left_justify) {
+				flags.zero_padding = 1;
+			}
 			printed_chars ++;
 			break;
 		default:

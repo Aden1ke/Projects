@@ -50,3 +50,36 @@ void run_width_tests(void) {
     printf("Original: |%10u|\n", 3000000000U);
     _printf("Custom:   |%10u|\n", 3000000000U);
 }
+
+
+
+
+// test for precision
+
+void test_printf_precision(void) {
+
+    // Test 1: Integer with precision
+    printf("Test 1: Integer with precision\n");
+    printf("Standard printf: |%.5d|\n", 42);
+    _printf("Custom _printf : |%.5d|\n", 42);
+
+    // Test 2: String with precision
+    printf("Test 2: String with precision\n");
+    printf("Standard printf: |%.5s|\n", "Hello");
+    _printf("Custom _printf : |%.5s|\n", "Hello");
+
+    // Test 3: Unsigned integer with precision
+    printf("Test 3: Unsigned integer with precision\n");
+    printf("Standard printf: |%.5u|\n", 123);
+    _printf("Custom _printf : |%.5u|\n", 123);
+
+    // Test 4: Hexadecimal with precision
+    printf("Test 4: Hexadecimal with precision\n");
+    printf("Standard printf: |%.5x|\n", 255);
+    _printf("Custom _printf : |%.5x|\n", 255);
+
+    // Test 5: Precision with zero
+    printf("Test 5: Precision with zero\n");
+    printf("Standard printf: |%.0d|\n", 0);
+    _printf("Custom _printf : |%.0d|\n", 0);
+}

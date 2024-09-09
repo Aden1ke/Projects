@@ -21,17 +21,15 @@ int _printf(const char *format, ...) {
 				printed_chars += handle_flag(format[i], format[i + 1], flags);
 				i++;
             }
-			if (isdigit(format[i])) {
-				printed_chars += handle_width(format, &i, format[i + 2], args, flags);
+			if (isdigit(format[i]) || format[i] == '.') {
+				printed_chars += handle_width_precision(format, &i, format[i + 2], args, flags);
 			} 
 			else if (format[i] == 'l' || format[i] == 'h') {
-				handle_specifier(format[i], args, format[i + 1]);
+				handle_specifier(format[i], args, format[i + 1]/*, flags*/);
 				i++;  // Move to the specifier character after 'l' or 'h'
-			} /*else if (isdigit(format[i])) {
-				printed_chars += handle_width(format, &i, format[i + 2], args, flags);
-			}*/
+			}
 			else 
-				printed_chars += handle_specifier(format[i], args, format[i + 1]);
+				printed_chars += handle_specifier(format[i], args, format[i + 1]/*, flags*/);
 		}
 		else {
 			add_to_buffer(format[i]);

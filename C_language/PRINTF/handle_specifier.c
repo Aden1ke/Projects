@@ -6,7 +6,7 @@
  * args: arguments.
  * next_char : next character after specifiers.
  */
-int handle_specifier(char specifier, va_list args, char next_char)
+int handle_specifier(char specifier, va_list args, char next_char/*, flags_t flags*/)
 {
 	int printed_chars = 0, num;
 	unsigned int u_num;
@@ -28,6 +28,10 @@ int handle_specifier(char specifier, va_list args, char next_char)
 		case 'd':
 		case 'i':
 			num = va_arg(args, int);
+			/*if (flags.plus && num >= 0) {
+				add_to_buffer('+');
+				printed_chars++;
+			}*/
 			sprintf(num_str, "%d", num);
 			itera(num_str);
 			break;

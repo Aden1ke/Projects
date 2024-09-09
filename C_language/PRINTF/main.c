@@ -99,5 +99,6 @@ int main(void)
 
 
     run_width_tests();
+    test_printf_precision();
     return (0);
 }
