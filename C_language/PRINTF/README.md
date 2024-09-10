@@ -6,17 +6,20 @@ This project implements a custom version of the printf function in C, which form
 
 Features
 
-Supports standard format specifiers (%d, %i, %u, %x, %o, %s, %c, %p, etc.)
-Custom flag handling (+, -, 0, space, #)
-Handles width and precision for specifiers
-Color-coded output for better readability:
-Numbers: Yellow
-Alphabets: Green
-Brackets, Slashes: Blue
-Special characters (e.g., quotes, punctuation): Magenta
-Reset color for other characters
+Supports standard format specifiers (%d, %i, %u, %x, %o, %s, %c, %p, etc.)<br>
+Custom flag handling (+, -, 0, space, #)<br>
+Handles width and precision for specifiers<br>
+Color-coded output for better readability:<br>
+Numbers: Yellow<br>
+Alphabets: Green<br>
+Brackets, Slashes: Blue<br>
+Special characters (e.g., quotes, punctuation): Magenta<br>
+Reset color for other characters<br>
+
 How to Compile and Run
+
 Compilation
+
 To compile the code, you can use the following command:
 
 
@@ -33,38 +36,46 @@ The program will format and print data based on the inputs and provide color-cod
 Supported Format Specifiers
 This custom _printf function currently supports the following format specifiers:
 
-%c : Print a single character
-%s : Print a string
-%d or %i : Print a signed integer
-%u : Print an unsigned integer
-%o : Print an unsigned integer in octal (base 8)
-%x or %X : Print an unsigned integer in hexadecimal (base 16), lowercase (x) or uppercase (X)
-%p : Print a pointer address
-%b : Print an integer in binary format
+%c : Print a single character<br>
+%s : Print a string<br>
+%d or %i : Print a signed integer<br>
+%u : Print an unsigned integer<br>
+%o : Print an unsigned integer in octal (base 8)<br>
+%x or %X : Print an unsigned integer in hexadecimal (base 16), lowercase (x) or uppercase (X)<br>
+%p : Print a pointer address<br>
+%b : Print an integer in binary format<br>
+
 Flags Supported:
-+: Print a plus sign before positive numbers.
-(space): Adds a space before positive numbers.
-#: Alternate form for o, x, X specifiers.
-0: Zero-padding for numeric specifiers.
+
++: Print a plus sign before positive numbers.<br>
+(space): Adds a space before positive numbers.<br>
+#: Alternate form for o, x, X specifiers.<br>
+0: Zero-padding for numeric specifiers.<br>
 -: Left justify the output.
+
 Width and Precision:
+
 The function handles width and precision modifiers for the following specifiers, adding flexibility in formatting output.
 
 Color Formatting
 The output from the _printf function is color-coded based on the type of character being printed:
 
-Yellow: Numbers (e.g., digits, integers)
-Green: Alphabetic characters (both uppercase and lowercase letters)
-Blue: Brackets ([, ], {, }, (, )), slashes (/, \), and pipes (|)
-Magenta: Special symbols (', ", +, -, *, %, =, ., !, ?, etc.)
+Yellow: Numbers (e.g., digits, integers)<br>
+Green: Alphabetic characters (both uppercase and lowercase letters)<br>
+Blue: Brackets ([, ], {, }, (, )), slashes (/, \), and pipes (|)<br>
+Magenta: Special symbols (', ", +, -, *, %, =, ., !, ?, etc.)  <br>
+
 Default: All other characters revert to the terminal’s default color.
+
 How to Test the Code
+
 You can test the code by compiling and running it with different format specifiers. Here's an example of how to test the different functionalities:
-EAMPLE:
-_printf("Hello %s!\n", "world");
-_printf("Number: %d, Hex: %x, Octal: %o\n", 42, 42, 42);
-_printf("Character: %c\n", 'A');
-_printf("Pointer: %p\n", &main);
+
+EAMPLE:<br>
+_printf("Hello %s!\n", "world");<br>
+_printf("Number: %d, Hex: %x, Octal: %o\n", 42, 42, 42);<br>
+_printf("Character: %c\n", 'A');<br>
+_printf("Pointer: %p\n", &main);<br>
 You should see the output formatted with the appropriate colors in a terminal that supports ANSI escape codes.
 
 
