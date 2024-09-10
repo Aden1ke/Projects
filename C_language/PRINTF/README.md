@@ -1,10 +1,10 @@
-Custom _printf Function
+<h1 align="center">Custom _printf Function</h1>
 
-Overview
+##Overview
 
 This project implements a custom version of the printf function in C, which formats and prints data to the standard output. The custom _printf function supports various specifiers and flags similar to the standard printf, and introduces color formatting for specific types of characters.
 
-Features
+##Features
 
 Supports standard format specifiers (%d, %i, %u, %x, %o, %s, %c, %p, etc.)<br>
 Custom flag handling (+, -, 0, space, #)<br>
@@ -18,7 +18,7 @@ Reset color for other characters<br>
 
 How to Compile and Run
 
-Compilation
+##Compilation
 
 To compile the code, you can use the following command:
 
@@ -33,7 +33,7 @@ Once compiled, you can test the program by calling _printf like so:
 
 The program will format and print data based on the inputs and provide color-coded output in the terminal (ensure your terminal supports ANSI colors).
 
-Supported Format Specifiers
+##Supported Format Specifiers
 This custom _printf function currently supports the following format specifiers:
 
 %c : Print a single character<br>
@@ -45,7 +45,7 @@ This custom _printf function currently supports the following format specifiers:
 %p : Print a pointer address<br>
 %b : Print an integer in binary format<br>
 
-Flags Supported:
+##Flags Supported:
 
 +: Print a plus sign before positive numbers.<br>
 (space): Adds a space before positive numbers.<br>
@@ -53,11 +53,11 @@ Flags Supported:
 0: Zero-padding for numeric specifiers.<br>
 -: Left justify the output.
 
-Width and Precision:
+##Width and Precision:
 
 The function handles width and precision modifiers for the following specifiers, adding flexibility in formatting output.
 
-Color Formatting
+##Color Formatting
 The output from the _printf function is color-coded based on the type of character being printed:
 
 Yellow: Numbers (e.g., digits, integers)<br>
@@ -67,7 +67,7 @@ Magenta: Special symbols (', ", +, -, *, %, =, ., !, ?, etc.)  <br>
 
 Default: All other characters revert to the terminal’s default color.
 
-How to Test the Code
+##How to Test the Code
 
 You can test the code by compiling and running it with different format specifiers. Here's an example of how to test the different functionalities:
 
