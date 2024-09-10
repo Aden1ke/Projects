@@ -1,8 +1,11 @@
 Custom _printf Function
+
 Overview
+
 This project implements a custom version of the printf function in C, which formats and prints data to the standard output. The custom _printf function supports various specifiers and flags similar to the standard printf, and introduces color formatting for specific types of characters.
 
 Features
+
 Supports standard format specifiers (%d, %i, %u, %x, %o, %s, %c, %p, etc.)
 Custom flag handling (+, -, 0, space, #)
 Handles width and precision for specifiers
