@@ -38,7 +38,7 @@ int main(void) {
 		argv[i] = NULL;
 		if (fork() == 0) {
 			// Print the command back to the user
-			if (execve(argv[0], argv, NULL) == -1) {
+			if (execvp(argv[0], argv) == -1) {
 				perror("./shell"); // Print an error message if execve fails
 				exit(EXIT_FAILURE); // Exit the shell if execve fails
 			}
