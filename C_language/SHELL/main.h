@@ -8,6 +8,10 @@
 #include <errno.h>
 #include <sys/wait.h>
 
+
+//global call
+extern char **environ;
+
 // Function prototypes
 int main(void);
 void prompt(void);

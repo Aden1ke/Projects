@@ -36,6 +36,9 @@ int main(void) {
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
+		if (argv[0] != NULL && strcmp(argv[0], "exit") == 0) {
+			_exit(0);
+		}
 		if (fork() == 0) {
 			// Print the command back to the user
 			if (execvp(argv[0], argv) == -1) {
