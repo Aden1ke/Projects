@@ -6,7 +6,8 @@ console.log(`welcome to File system reading\n`);
 console.log(`Do you want to: \n
 	1) Read a File\n
 	2) Write into a File\n
-	3) Delete a File\n
+	3) append a File\n
+	4) Delete a File\n
 	Pick a number:\n`);
 process.stdin.on('data', (data) => {
 	const command = data.toString().trim();
@@ -43,11 +44,37 @@ process.stdin.on('data', (data) => {
 		  });
 	  });
   }else if (command === "3") {
-          console.log(`delete`);
+	    console.log(`Please provide the file to write into:`);
+	  process.stdin.once('data', (fileName) => {
+		  const Path = fileName.toString().trim();
+		  console.log(`Please provide the data to write into ${Path}:`);
+		  process.stdin.once('data', (data) => {
+			  const content = data.toString().trim();
+			  const append = fs.appendFile(Path, content, 'utf8', (err, data) => {
+				  if (err) {
+					  console.log(`error caused by: ${err}`);
+				  } else
+					  console.log('Content successfully appended!');
+				  process.exit();
+			  });
+		  });
+	  });
+  } else if (command === "4") {
+	  console.log(`Please provide the file to delete:`);
+	  process.stdin.once('data', (fileName) => {
+		  const Path = fileName.toString().trim();
+		  const write = fs.unlink(Path, (err) => {
+			  if (err) {
+				  console.log(`error caused by: ${err}`);
+			  } else
+				  console.log('File successfully deleted!');
+			  process.exit();
+		  });
+	  });
   } else {
 	  console.log(`Incorrect command. Please pick 1, 2, or 3.`);
     }
 	});
 
-console.log(`file reading`);
+console.log(` file reading ongoing `);
 
