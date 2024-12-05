@@ -6,29 +6,42 @@ const { append } = require("./append");
 const { deleteFile } = require("./delete");
 
 
-console.log(`welcome to File system reading\n`);
-console.log(`Do you want to: \n
-	1) Read a File\n
-	2) Write into a File\n
-	3) append a File\n
-	4) Delete a File\n
-	Pick a number:\n`);
+function showMenu() {
+    console.log(`Welcome to File System Manager\n`);
+    console.log(`Do you want to: \n
+        1) Read a File\n
+        2) Write into a File\n
+        3) Append to a File\n
+        4) Delete a File\n
+        Pick a number:\n`);
+}
 
+//showMenu();
+
+//handle commandments in async form
+async function handleCommands(command) {
+	try {
+		if (command === "1") {
+			await read();
+		} else if (command === "2") {
+			await write();
+		} else if (command === "3") {
+			await append();
+		} else if (command === "4") {
+			await deleteFile();
+		} else {
+			console.log(`Incorrect command. Please pick 1, 2, 3, or 4.`)
+		}
+	} catch(error) {
+		console.log(`${error} : Incorrect command. Please pick 1, 2, 3, or 4.`)};
+}
+
+//make it a repeated process
 process.stdin.on("data", (data) => {
-    const command = data.toString().trim(); // Trim whitespace from the command
+	const command = data.toString().trim();
+	// Trim whitespace from the command
+	handleCommands(command);
+	});
 
-    if (command === "1") {
-	    read();
-    } else if (command === "3") {
-	    write();
-    } else if (command === "3") {
-	    append();
-    } else if (command === "4") {
-	    deleteFile();
-    } else {
-	    console.log(`Incorrect command. Please pick 1, 2, 3, or 4.`); // Error message for invalid input
-    }
-});
-
-console.log(` file reading ongoing `);
+//console.log(` file reading ongoing `);
 
