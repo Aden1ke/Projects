@@ -1,39 +1,52 @@
 const express = require('express');
+const shortid = require("shortid");
 //const zookeeper = require('node-zookeeper-client');
 
 const app = express();
-//connect to zookeeper
-//const client = zookeeper.createClient('localhost:8000');
-//client.connect();
+// Middleware to parse JSON request bodies
+app.use(express.json());
 
 
-// Fetch a range of IDs
-//function fetchRange(rangeSize, callback) {
-//	client.getData('')
-//}
+//obj storing the original url with the shortcode in an obj
+const urlDatabase = {};
 
 
-//routes to get url
-app.post('/:shorten', (req, res) => {
+//Root handler
+app.get('/', (req, res) => {
+	res.send('Welcome to the URL Shortner')
+});
+
+//routes to store url
+app.post('/:shortCode', (req, res) => {
 	const { originalurl } = req.body;
+	if(!originalurl) {
+		return ( res.status(400).send("Original URL not found"));
+	}
+	
+	// if originalurl is correct generatete a code
 	const shortCode = shortid.generate();
-	const newUrlCode = {
-		const oldUrl = originalUrl;
-		const newUrl = shortCode:
-	};
+
+	//store the originalurl in urldabase object using the short code as key
+	urlDatabase[shortCode] = originalurl;
+
+	//Store the original URL with its short code
+	res.json({shortcode, shorturl: `http://localhost:8000/${shortCode}`});
 });
 
 
-app.get(('/:shorten', (req, res) => {
+// Route to redirect to the original URL
+app.get('/:shortCode', (req, res) => {
 	const { shortCode } = req.params;
-	const url = newUrlCode.find({ shortCode });
-	if (url) {
-		res.redirect(url.originalUrl);
+	const originalurl = urlDatabase[shortCode];
+	if (originalurl) {
+		res.redirect(originalUrl);
 	} else {
 		res.status(404).send('URL not found');
 	}
 });
 
-app.listen(8000, ()=> {
+
+const PORT = 8000;
+app.listen(PORT, ()=> {
 	console.log(`Server is running on http://localhost:${PORT}`);
 });
